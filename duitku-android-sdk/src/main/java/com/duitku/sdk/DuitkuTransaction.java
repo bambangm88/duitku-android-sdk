@@ -96,17 +96,29 @@ public class DuitkuTransaction extends AppCompatActivity {
         Address address = new Address(DuitkuKit.getFirstName(),DuitkuKit.getLastName(),DuitkuKit.getAddress(),DuitkuKit.getCity(),DuitkuKit.getPostalCode(),DuitkuKit.getPhoneNumber(),DuitkuKit.getCountryCode());
         CustomerDetails customerDetails = new CustomerDetails(DuitkuKit.getFirstName(),DuitkuKit.getLastName(),DuitkuKit.getEmail(),DuitkuKit.getPhoneNumber(),address,address) ;
 
-        checkout(DuitkuKit.getPaymentAmount(),
-                DuitkuKit.getPaymentMethod(),
-                DuitkuKit.getProductDetails(),
-                DuitkuKit.getEmail(),
-                DuitkuKit.getPhoneNumber(),
-                DuitkuKit.getAdditionalParam(),
-                DuitkuKit.getMerchantUserInfo(),
-                DuitkuKit.getCustomerVaName(),
-                DuitkuKit.getCallbackUrl(),
-                DuitkuKit.getReturnUrl(),
-                DuitkuKit.getExpiryPeriod(),customerDetails);
+
+        if(DuitkuKit.getExpiryPeriod().equals("") || DuitkuKit.getExpiryPeriod() == null){
+
+            displayError(DuitkuTransaction.this.getString(R.string.expiredPage));
+
+        }else{
+
+            checkout(DuitkuKit.getPaymentAmount(),
+                    DuitkuKit.getPaymentMethod(),
+                    DuitkuKit.getProductDetails(),
+                    DuitkuKit.getEmail(),
+                    DuitkuKit.getPhoneNumber(),
+                    DuitkuKit.getAdditionalParam(),
+                    DuitkuKit.getMerchantUserInfo(),
+                    DuitkuKit.getCustomerVaName(),
+                    DuitkuKit.getCallbackUrl(),
+                    DuitkuKit.getReturnUrl(),
+                    DuitkuKit.getExpiryPeriod(),customerDetails);
+
+        }
+
+
+
     }
 
     private void initialiasi(){

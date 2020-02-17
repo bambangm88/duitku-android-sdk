@@ -22,4 +22,5 @@
     <string name="three">03</string>
     <string name="topUp">TopUp</string>
     <string name="Notification">Notification</string>
+    <string name="expiredPage">Session Expired. Anda sudah tidak aktif cukup lama, kami mengakhiri sesi Anda untuk membantu melindungi akun Anda. Silakan kembali dan mengulang proses pembayaran.</string>
 </resources>

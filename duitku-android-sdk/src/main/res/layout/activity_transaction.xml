@@ -104,6 +104,8 @@
             android:textSize="15dp"
             android:id="@+id/txt_error"
             android:layout_marginTop="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:gravity="center"
             android:textAlignment="center"
             android:text="Memuat"
