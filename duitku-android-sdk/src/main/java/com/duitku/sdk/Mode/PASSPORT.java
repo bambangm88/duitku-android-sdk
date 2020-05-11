@@ -32,6 +32,15 @@ public class PASSPORT {
             webView.stopLoading();
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             context.startActivity(browserIntent);
+        }else if(url.equals("shopee.co.id") ){
+            webView.stopLoading();
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            context.startActivity(browserIntent);
+        }
+        else if(url.equals("linkaja.id") ){
+            webView.stopLoading();
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            context.startActivity(browserIntent);
         }else{
                     //CC
                     if(url.contains("TopUp") && url.contains("Notification") )  {
