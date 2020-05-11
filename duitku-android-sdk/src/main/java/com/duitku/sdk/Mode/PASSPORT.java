@@ -32,15 +32,17 @@ public class PASSPORT {
             webView.stopLoading();
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             context.startActivity(browserIntent);
-        }else if(url.equals("shopee.co.id") ){
+        }else if(url.equals("shopee.co.id")|| url.equals("airpay.co.id") ){
             webView.stopLoading();
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             context.startActivity(browserIntent);
+            ((DuitkuTransaction)(context)).finish();
         }
         else if(url.equals("linkaja.id") ){
             webView.stopLoading();
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             context.startActivity(browserIntent);
+            ((DuitkuTransaction)(context)).finish();
         }else{
                     //CC
                     if(url.contains("TopUp") && url.contains("Notification") )  {

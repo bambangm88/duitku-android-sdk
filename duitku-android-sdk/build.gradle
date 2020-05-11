@@ -38,7 +38,7 @@ android {
 }
 
 ext {
-    butterknifeVersion = "8.8.1"
+        butterknifeVersion = "8.8.1"
         bintrayOrg = 'duitku'
         bintrayRepo = 'duitku-android-sdk'
         bintrayName = 'duitku-android-sdk'   // Has to be same as your library module name
