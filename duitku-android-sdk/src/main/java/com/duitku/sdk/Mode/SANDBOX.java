@@ -32,13 +32,13 @@ public class SANDBOX {
             webView.stopLoading();
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             context.startActivity(browserIntent);
-        } else if(url.equals("shopee.co.id") || url.equals("airpay.co.id")  ){
+        } else if(url.contains("shopee.co.id") || url.contains("airpay.co.id")  ){
             webView.stopLoading();
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             context.startActivity(browserIntent);
             ((DuitkuTransaction)(context)).finish();
         }
-        else if(url.equals("linkaja.id") ){
+        else if(url.contains("linkaja.id") ){
             webView.stopLoading();
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             context.startActivity(browserIntent);
