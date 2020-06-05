@@ -44,6 +44,11 @@ public class SANDBOX {
             context.startActivity(browserIntent);
             ((DuitkuTransaction)(context)).finish();
         }
+        else if(url.contains("linkaja") ){
+            webView.stopLoading();
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            context.startActivity(browserIntent);
+         }
 
         else{
 
