@@ -60,9 +60,15 @@ public class SANDBOX {
 
         }
         else if(url.contains("linkaja") ){
-            webView.stopLoading();
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-            context.startActivity(browserIntent);
+         
+            //IF linkajaQRIS still on page | if else url intent
+            if (url.contains("Qris")){
+
+            }else{
+                webView.stopLoading();
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                context.startActivity(browserIntent);
+            }
 
          }
 
