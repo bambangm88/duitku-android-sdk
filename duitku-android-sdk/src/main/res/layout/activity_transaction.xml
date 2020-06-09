@@ -71,6 +71,7 @@
             android:layout_height="50dp" />
 
         <TextView
+            android:textColor="@color/text"
             android:layout_marginTop="15dp"
             android:textAlignment="center"
             android:text="Memuat"
@@ -101,6 +102,7 @@
             android:layout_height="80dp" />
 
         <TextView
+            android:textColor="@color/text"
             android:textSize="15dp"
             android:id="@+id/txt_error"
             android:layout_marginTop="5dp"
