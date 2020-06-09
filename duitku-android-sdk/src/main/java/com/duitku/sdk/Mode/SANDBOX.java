@@ -42,23 +42,27 @@ public class SANDBOX {
         }
         else if(url.contains("linkaja.id") ){
             webView.stopLoading();
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-            context.startActivity(browserIntent);
-            ((DuitkuTransaction)(context)).finish();
-        }
-        else if(url.contains("linkaja") ){
-            webView.stopLoading();
+
 
             try
             {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 context.startActivity(browserIntent);
+                ((DuitkuTransaction)(context)).finish();
             }
             catch (Exception e)
             {
                 // TODO: handle exception
                 Toast.makeText(context,"Please, Download App",Toast.LENGTH_LONG).show();
             }
+
+
+
+        }
+        else if(url.contains("linkaja") ){
+            webView.stopLoading();
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            context.startActivity(browserIntent);
 
          }
 
