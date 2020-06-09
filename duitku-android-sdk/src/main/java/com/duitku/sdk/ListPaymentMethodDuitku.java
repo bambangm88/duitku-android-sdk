@@ -225,7 +225,7 @@ public class ListPaymentMethodDuitku extends AppCompatActivity  {
             public void onFailure(Call<ResponseGetListPaymentMethod> call, Throwable t) {
                 closeProgreesLoading();
                 displayError(ListPaymentMethodDuitku.this.getString(R.string.internalServerError));
-                Toast.makeText(mContext, ListPaymentMethodDuitku.this.getString(R.string.internalServerError), Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, ListPaymentMethodDuitku.this.getString(R.string.internalServerError)+t.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.e("Error", "onFailure: "+t.getMessage() );
             }
         });

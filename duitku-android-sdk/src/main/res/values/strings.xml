@@ -13,8 +13,8 @@
     <string name="retryExpiredpage">Session Expired, Please, Retry Your Payment</string>
     <string name="errorNull">Internal Server Error, 502</string>
     <string name="errorResponse">Error Response Data</string>
-    <string name="internalServerError">Internal server error / check your connection</string>
-    <string name="errorConnection">Please, Check your connection</string>
+    <string name="internalServerError">Internal server error / check your connection, </string>
+    <string name="errorConnection">Server Error, </string>
     <string name="sukses">SUCCESS</string>
     <string name="zero">00</string>
     <string name="one">01</string>

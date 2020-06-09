@@ -18,15 +18,16 @@ public class LocalPrefManagerDuitku {
     int PRIVATE_MODE = 0;
 
     // Sharedpref file name
-    private static final String PREF_NAME = "paymentSDK";
+    private static final String PREF_NAME = "paymentSDK_";
 
     private static final String TAG_TRANSACTION = "N";
     // All Shared Preferences Keys
-    private static final String TAG_STATUS = "statusMessage";
-    private static final String TAG_REFERENCE = "reference";
-    private static final String TAG_AMOUNT = "amount";
-    private static final String TAG_CODE = "statusCode";
-    private static final String TAG_TOTAL = "total";
+    private static final String TAG_STATUS = "statusMessage_";
+    private static final String TAG_REFERENCE = "reference_";
+    private static final String TAG_AMOUNT = "amount_";
+    private static final String TAG_CODE = "statusCode_";
+    private static final String TAG_TOTAL = "total_";
+    private static final String TAG_URL = "urlX_";
 
 
     // Constructor
@@ -52,6 +53,13 @@ public class LocalPrefManagerDuitku {
     public void createTotal( String total ){
 
         setPref.putString(TAG_TOTAL, total);
+        setPref.commit();
+
+    }
+
+    public void createURLTRX( String total ){
+
+        setPref.putString(TAG_URL, total);
         setPref.commit();
 
     }
@@ -83,6 +91,10 @@ public class LocalPrefManagerDuitku {
         return pref.getString(TAG_AMOUNT, "");
     }
 
+    public String getTagUrlTRX() {
+
+        return pref.getString(TAG_URL, "");
+    }
 
 
     public void onfinish(){

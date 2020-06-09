@@ -73,6 +73,7 @@ public class DuitkuTransaction extends AppCompatActivity {
     private WebView webView;
     private DuitkuKit DuitkuKit;
 
+
     public static List<Map<Object, Object>> itemDetails ;
 
 
@@ -89,6 +90,7 @@ public class DuitkuTransaction extends AppCompatActivity {
 
         ButterKnife.bind(DuitkuTransaction.this);
         API = ServerNetwork.getAPIService();
+
 
 
 
@@ -124,7 +126,7 @@ public class DuitkuTransaction extends AppCompatActivity {
     private void initialiasi(){
 
         DuitkuKit = new DuitkuKit();
-        prefManager = new LocalPrefManagerDuitku(getApplicationContext());
+        prefManager = new LocalPrefManagerDuitku(this);
         callbackKit = new DuitkuCallbackTransaction();
         txt_toolbar_title = findViewById(R.id.toolbar_title);
         txt_toolbar_title.setText(DuitkuKit.getTitlePayment());
@@ -174,6 +176,7 @@ public class DuitkuTransaction extends AppCompatActivity {
                             DuitkuKit.setModePayment(DuitkuTransaction.this.getString(R.string.passportLarge));
                         }
 
+                        prefManager.createURLTRX(d_url);
                         web_checkout(d_url);
                     }else {
                         closeProgreesLoading();
@@ -193,7 +196,7 @@ public class DuitkuTransaction extends AppCompatActivity {
             public void onFailure(Call<ResponseTransaction> call, Throwable t) {
                 closeProgreesLoading();
                 displayError(DuitkuTransaction.this.getString(R.string.internalServerError));
-                Toast.makeText(DuitkuTransaction.this,DuitkuTransaction.this.getString(R.string.internalServerError), Toast.LENGTH_SHORT).show();
+                Toast.makeText(DuitkuTransaction.this,DuitkuTransaction.this.getString(R.string.internalServerError)+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -293,7 +296,8 @@ public class DuitkuTransaction extends AppCompatActivity {
 
 
         @Override
-        public void onReceivedError(WebView view,WebResourceRequest request, WebResourceError error){
+        public void onReceivedError(WebView view, int errorCode,
+                                    String description, String failingUrl){
 
             if (DuitkuKit.getPaymentMethod().equals("MG")){
                 checkConnection();
@@ -303,7 +307,7 @@ public class DuitkuTransaction extends AppCompatActivity {
                 closeProgreesLoading();
                 //cv_cc_info_transaction.setVisibility(View.VISIBLE);
                 displayError(DuitkuTransaction.this.getString(R.string.errorConnection));
-                Toast.makeText(DuitkuTransaction.this, DuitkuTransaction.this.getString(R.string.errorConnection)+error.toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(DuitkuTransaction.this, DuitkuTransaction.this.getString(R.string.errorConnection)+description, Toast.LENGTH_LONG).show();
             }
 
 
@@ -347,7 +351,7 @@ public class DuitkuTransaction extends AppCompatActivity {
                 closeProgreesLoading();
                 //cv_cc_info_transaction.setVisibility(View.VISIBLE);
                 displayError(DuitkuTransaction.this.getString(R.string.internalServerError));
-                Toast.makeText(DuitkuTransaction.this,DuitkuTransaction.this.getString(R.string.errorConnection), Toast.LENGTH_SHORT).show();
+                Toast.makeText(DuitkuTransaction.this,DuitkuTransaction.this.getString(R.string.errorConnection)+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -435,7 +439,9 @@ public class DuitkuTransaction extends AppCompatActivity {
         }
     }
 
-
-
-
+    @Override
+    protected void onResume() {
+        web_checkout(prefManager.getTagUrlTRX());
+        super.onResume();
+    }
 }
