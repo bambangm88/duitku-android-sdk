@@ -10,8 +10,7 @@
 <RelativeLayout
     android:clickable="true"
     android:focusable="true"
-    android:background="@android:color/white"
-    android:foreground="?attr/selectableItemBackground"
+    android:background="@drawable/ripple_"
     android:id="@+id/btn_itemRow"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
