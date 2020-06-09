@@ -9,6 +9,7 @@
 <RelativeLayout
     android:clickable="true"
     android:focusable="true"
+    android:background="#fff"
     android:foreground="?attr/selectableItemBackground"
     android:id="@+id/btn_itemRow"
     android:layout_width="match_parent"
@@ -16,6 +17,7 @@
 
 
     <LinearLayout
+        android:background="#fff"
         android:orientation="vertical"
         android:layout_marginBottom="2dp"
         android:layout_width="match_parent"
@@ -23,11 +25,13 @@
 
 
     <androidx.cardview.widget.CardView
+        android:background="#fff"
         android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:background="#fff"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="12dp"
