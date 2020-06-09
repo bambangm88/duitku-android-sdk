@@ -57,9 +57,9 @@ public class LocalPrefManagerDuitku {
 
     }
 
-    public void createURLTRX( String total ){
+    public void createURLTRX( String url){
 
-        setPref.putString(TAG_URL, total);
+        setPref.putString(TAG_URL, url);
         setPref.commit();
 
     }

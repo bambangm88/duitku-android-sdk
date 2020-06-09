@@ -74,6 +74,7 @@ public class DuitkuTransaction extends AppCompatActivity {
     private DuitkuKit DuitkuKit;
 
 
+
     public static List<Map<Object, Object>> itemDetails ;
 
 
@@ -151,6 +152,7 @@ public class DuitkuTransaction extends AppCompatActivity {
     public void onBackPressed() {
 
         finish();
+        prefManager.createURLTRX("");
 
         super.onBackPressed();
     }
@@ -441,7 +443,17 @@ public class DuitkuTransaction extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        web_checkout(prefManager.getTagUrlTRX());
+
+        //run trx
+        if (prefManager.getTagUrlTRX() != ""){
+
+            web_checkout(prefManager.getTagUrlTRX());
+
+        }
+
         super.onResume();
     }
+
+
+
 }

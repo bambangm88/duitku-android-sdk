@@ -16,7 +16,6 @@
 
 
     <LinearLayout
-        android:background="#fff"
         android:orientation="vertical"
         android:layout_marginBottom="2dp"
         android:layout_width="match_parent"
