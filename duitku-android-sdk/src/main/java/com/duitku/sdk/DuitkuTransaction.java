@@ -197,7 +197,7 @@ public class DuitkuTransaction extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResponseTransaction> call, Throwable t) {
                 closeProgreesLoading();
-                displayError(DuitkuTransaction.this.getString(R.string.internalServerError));
+                displayError(DuitkuTransaction.this.getString(R.string.internalServerError)+t.getMessage());
                 Toast.makeText(DuitkuTransaction.this,DuitkuTransaction.this.getString(R.string.internalServerError)+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -308,7 +308,7 @@ public class DuitkuTransaction extends AppCompatActivity {
                 //Your code to do
                 closeProgreesLoading();
                 //cv_cc_info_transaction.setVisibility(View.VISIBLE);
-                displayError(DuitkuTransaction.this.getString(R.string.errorConnection));
+                displayError(DuitkuTransaction.this.getString(R.string.errorConnection)+description);
                 Toast.makeText(DuitkuTransaction.this, DuitkuTransaction.this.getString(R.string.errorConnection)+description, Toast.LENGTH_LONG).show();
             }
 
@@ -352,7 +352,7 @@ public class DuitkuTransaction extends AppCompatActivity {
 
                 closeProgreesLoading();
                 //cv_cc_info_transaction.setVisibility(View.VISIBLE);
-                displayError(DuitkuTransaction.this.getString(R.string.internalServerError));
+                displayError(DuitkuTransaction.this.getString(R.string.internalServerError)+t.getMessage());
                 Toast.makeText(DuitkuTransaction.this,DuitkuTransaction.this.getString(R.string.errorConnection)+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -368,11 +368,11 @@ public class DuitkuTransaction extends AppCompatActivity {
             PASSPORT passport =  new PASSPORT();
 
             if (DuitkuKit.getModePayment() == DuitkuTransaction.this.getString(R.string.sandboxLarge)){
-                sandbox.runSandbox(webView,this,DuitkuKit,url,reference);
+                sandbox.runSandbox(webView,this,DuitkuKit,url,reference , prefManager);
             }
 
             if (DuitkuKit.getModePayment() == DuitkuTransaction.this.getString(R.string.passportLarge)){
-                passport.runPasport(webView,this,DuitkuKit,url,reference);
+                passport.runPasport(webView,this,DuitkuKit,url,reference ,prefManager);
             }
 
         }

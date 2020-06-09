@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.util.Log;
 import android.webkit.WebView;
 
+import com.duitku.sdk.PrefManagerDuitku.LocalPrefManagerDuitku;
 import com.duitku.sdk.R;
 import com.duitku.sdk.DuitkuCallback.DuitkuCallbackTransaction;
 import com.duitku.sdk.DuitkuTransaction;
@@ -15,7 +16,7 @@ import com.duitku.sdk.DuitkuClient;
 public class SANDBOX {
 
 
-    public void runSandbox(WebView webView, Context context, DuitkuKit duitkuKit, String url , String reference){
+    public void runSandbox(WebView webView, Context context, DuitkuKit duitkuKit, String url , String reference , LocalPrefManagerDuitku localPrefManagerDuitku){
         if (url.toLowerCase().contains(duitkuKit.getReturnUrl())){
             ((DuitkuTransaction)(context)).closeProgreesLoading();
         }else {
@@ -81,10 +82,6 @@ public class SANDBOX {
 
                 if(url.contains(context.getString(R.string.sandbox)) ) {
 
-                }else if(url.contains(context.getString(R.string.expiredpage))){
-
-                ((DuitkuTransaction)(context)).displayError(context.getString(R.string.retryExpiredpage));
-
                 }else if(url.contains("TopUpOVO")) {
 
                 }else if(url.contains(duitkuKit.getReturnUrl()) || url.equals("") || url == ""   ) {
@@ -92,6 +89,8 @@ public class SANDBOX {
                     ((DuitkuTransaction)(context)).closeProgreesLoading();
                     webView.stopLoading();
                     ((DuitkuTransaction)(context)).finish();
+                    localPrefManagerDuitku.createURLTRX("");
+
                 }
                 else {
                     if (url.contains(duitkuKit.getReturnUrl())){
