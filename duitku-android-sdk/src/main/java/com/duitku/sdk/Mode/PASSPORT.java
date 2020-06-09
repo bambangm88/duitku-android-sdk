@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 import android.webkit.WebView;
+import android.widget.Toast;
 
 import com.duitku.sdk.PrefManagerDuitku.LocalPrefManagerDuitku;
 import com.duitku.sdk.R;
@@ -46,8 +47,21 @@ public class PASSPORT {
             ((DuitkuTransaction)(context)).finish();
         }else if(url.contains("linkaja") ){
             webView.stopLoading();
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-            context.startActivity(browserIntent);
+
+
+            try
+            {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                context.startActivity(browserIntent);
+            }
+            catch (Exception e)
+            {
+                // TODO: handle exception
+                Toast.makeText(context,"Please, Download App",Toast.LENGTH_LONG).show();
+            }
+
+
+
         }else{
                     //CC
                     if(url.contains("TopUp") && url.contains("Notification") )  {
