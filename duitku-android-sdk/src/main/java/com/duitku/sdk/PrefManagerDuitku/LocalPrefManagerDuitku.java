@@ -80,7 +80,7 @@ public class LocalPrefManagerDuitku {
                                     , String email , String firstName , String lastName , String address , String city
                                     , String postal_code , String phone , String countryCode , String baseUrl, String requestTrx , String checkTrx , String listPayment ){
 
-        setPref.putInt(TAG_PAYMENT_AMOUNT, amount);
+        setPref.putString(TAG_PAYMENT_AMOUNT, ""+amount);
         setPref.putString(TAG_PAYMENT_METHOD, paymentMethod);
         setPref.putString(TAG_PRODUCT_DETAILS, productdetail);
         setPref.putString(TAG_ADDITIONAL_PARAM, additionalParam);
