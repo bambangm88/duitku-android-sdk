@@ -60,7 +60,7 @@ public class SANDBOX {
 
         }
         else if(url.contains("linkaja") ){
-         
+
             //IF linkajaQRIS still on page | if else url intent
             if (url.contains("Qris")){
 
