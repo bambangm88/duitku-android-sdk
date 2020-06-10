@@ -186,7 +186,7 @@ public class LocalPrefManagerDuitku {
 
     public String getTagPaymentAmount() {
 
-        return pref.getString(TAG_PAYMENT_AMOUNT, "");
+        return pref.getString(TAG_PAYMENT_AMOUNT, "0");
     }
 
     public String getTagPaymentMethod() {
