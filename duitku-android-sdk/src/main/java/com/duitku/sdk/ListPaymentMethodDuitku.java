@@ -90,6 +90,8 @@ public class ListPaymentMethodDuitku extends AppCompatActivity  {
 
         prefManager = new LocalPrefManagerDuitku(getApplicationContext());
 
+        prefManager.createURLTRX("");
+
         txt_amount = findViewById(R.id.txt_amount);
 
         //payment amount null
@@ -169,6 +171,8 @@ public class ListPaymentMethodDuitku extends AppCompatActivity  {
             d_finish.clearSdkTask();
 
         }
+
+        prefManager.createURLTRX("");
 
         //run trx
         if (prefManager.getTagListTrx() != ""){
