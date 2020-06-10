@@ -151,8 +151,9 @@ public class DuitkuTransaction extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        finish();
         prefManager.createURLTRX("");
+        finish();
+
 
         super.onBackPressed();
     }
