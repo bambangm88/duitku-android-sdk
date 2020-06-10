@@ -182,6 +182,147 @@ public class LocalPrefManagerDuitku {
     }
 
 
+
+
+    public String getTagPaymentAmount() {
+
+        return pref.getString(TAG_PAYMENT_AMOUNT, "");
+    }
+
+    public String getTagPaymentMethod() {
+
+        return pref.getString(TAG_PAYMENT_METHOD, "");
+    }
+    public String getTagProductDetails() {
+
+        return pref.getString(TAG_PRODUCT_DETAILS, "");
+    }
+
+    public String getTagAdditionalParam() {
+
+        return pref.getString(TAG_ADDITIONAL_PARAM, "");
+    }
+
+    public String getTagMerchantUserInfo() {
+
+        return pref.getString(TAG_MERCHANT_USER_INFO, "");
+    }
+    public String getTagPhoneNumber() {
+
+        return pref.getString(TAG_PHONE_NUMBER, "");
+    }
+
+    public String getTagCustomerVaName() {
+
+        return pref.getString(TAG_CUSTOMER_VA_NAME, "");
+    }
+
+    public String getTagCallbackUrl() {
+
+        return pref.getString(TAG_CALLBACK_URL, "");
+    }
+    public String getTagReturnUrl() {
+
+        return pref.getString(TAG_RETURN_URL, "");
+    }
+
+    public String getTagExpirePeriod() {
+
+        return pref.getString(TAG_EXPIRE_PERIOD, "");
+    }
+    public String getTagTitlePayment() {
+
+        return pref.getString(TAG_TITLE_PAYMENT, "");
+    }
+
+    public String getTagModePayment() {
+
+        return pref.getString(TAG_MODE_PAYMENT, "");
+    }
+
+    public String getTagEmail() {
+
+        return pref.getString(TAG_EMAIL, "");
+    }
+
+    public String getTagFirstname() {
+
+        return pref.getString(TAG_FIRSTNAME, "");
+    }
+
+    public String getTagLastname() {
+
+        return pref.getString(TAG_LASTNAME, "");
+    }
+
+    public String getTagAddress() {
+
+        return pref.getString(TAG_ADDRESS, "");
+    }
+
+    public String getTagCity() {
+
+        return pref.getString(TAG_CITY, "");
+    }
+
+    public String getTagPostalCode() {
+
+        return pref.getString(TAG_POSTAL_CODE, "");
+    }
+    public String getTagPhone() {
+
+        return pref.getString(TAG_PHONE, "");
+    }
+
+    public String getTagCountryCode() {
+
+        return pref.getString(TAG_COUNTRY_CODE, "");
+    }
+
+    public String getTagBaseUrlApiDuitku(){
+
+        return pref.getString(TAG_BASE_URL_API_DUITKU, "");
+    }
+
+    public String getTagUrlRequestTransaction(){
+
+        return pref.getString(TAG_URL_REQUEST_TRANSACTION, "");
+    }
+
+
+    public String getTagUrlListPayment(){
+
+        return pref.getString(TAG_URL_LIST_PAYMENT, "");
+    }
+
+    public String getTagUrlCheckTransaction(){
+
+        return pref.getString(TAG_URL_CHECK_TRANSACTION, "");
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public void onfinish(){
         // Clearing all data from Shared Preferences
         setPref.clear();
@@ -195,32 +336,32 @@ public class LocalPrefManagerDuitku {
 
 
 
-    public void setTrxResume(DuitkuKit duitku){
+    public void setTrxResume(DuitkuKit duitku , LocalPrefManagerDuitku localPrefManagerDuitku){
 
-        BaseKitDuitku.setBaseUrlApiDuitku(TAG_BASE_URL_API_DUITKU);
-        BaseKitDuitku.setUrlRequestTransaction(TAG_URL_REQUEST_TRANSACTION);
-        BaseKitDuitku.setUrlCheckTransaction(TAG_URL_CHECK_TRANSACTION);
-        BaseKitDuitku.setUrlListPayment(TAG_URL_LIST_PAYMENT);
+        BaseKitDuitku.setBaseUrlApiDuitku(getTagBaseUrlApiDuitku());
+        BaseKitDuitku.setUrlRequestTransaction(getTagUrlRequestTransaction());
+        BaseKitDuitku.setUrlCheckTransaction(getTagUrlCheckTransaction());
+        BaseKitDuitku.setUrlListPayment(getTagUrlListPayment());
 
-        duitku.setProductDetails(TAG_PRODUCT_DETAILS);
-        duitku.setEmail(TAG_EMAIL);
-        duitku.setPhoneNumber(TAG_PHONE_NUMBER);
-        duitku.setAdditionalParam(TAG_ADDITIONAL_PARAM);
-        duitku.setMerchantUserInfo(TAG_MERCHANT_USER_INFO);
-        duitku.setCustomerVaName(TAG_CUSTOMER_VA_NAME);
-        duitku.setExpiryPeriod(TAG_EXPIRE_PERIOD);
-        duitku.setCallbackUrl(TAG_CALLBACK_URL);
-        duitku.setReturnUrl(TAG_RETURN_URL);
+        duitku.setProductDetails(getTagProductDetails());
+        duitku.setEmail(getTagEmail());
+        duitku.setPhoneNumber(getTagPhoneNumber());
+        duitku.setAdditionalParam(getTagAdditionalParam());
+        duitku.setMerchantUserInfo(getTagMerchantUserInfo());
+        duitku.setCustomerVaName(getTagCustomerVaName());
+        duitku.setExpiryPeriod(getTagExpirePeriod());
+        duitku.setCallbackUrl(getTagCallbackUrl());
+        duitku.setReturnUrl(getTagReturnUrl());
 
 
-        duitku.setFirstName(TAG_FIRSTNAME);
-        duitku.setLastName(TAG_LASTNAME);
-        duitku.setAddress(TAG_ADDRESS);
-        duitku.setCity(TAG_CITY);
-        duitku.setPostalCode(TAG_POSTAL_CODE);
-        duitku.setCountryCode(TAG_COUNTRY_CODE);
+        duitku.setFirstName(getTagFirstname());
+        duitku.setLastName(getTagLastname());
+        duitku.setAddress(getTagAddress());
+        duitku.setCity(getTagCity());
+        duitku.setPostalCode(getTagPostalCode());
+        duitku.setCountryCode(getTagCountryCode());
         //duitku.setItemDetails(arrayList);
-        duitku.setPaymentAmount(Integer.parseInt(TAG_PAYMENT_AMOUNT));
+        duitku.setPaymentAmount(Integer.parseInt(getTagPaymentAmount()));
 
     }
 
