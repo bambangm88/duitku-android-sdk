@@ -336,7 +336,7 @@ public class LocalPrefManagerDuitku {
 
 
 
-    public void setTrxResume(DuitkuKit duitku , LocalPrefManagerDuitku localPrefManagerDuitku){
+    public void setTrxResume(DuitkuKit duitku){
 
         BaseKitDuitku.setBaseUrlApiDuitku(getTagBaseUrlApiDuitku());
         BaseKitDuitku.setUrlRequestTransaction(getTagUrlRequestTransaction());
