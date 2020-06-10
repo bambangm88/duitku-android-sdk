@@ -39,6 +39,7 @@ public class SANDBOX {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             context.startActivity(browserIntent);
             ((DuitkuTransaction)(context)).finish();
+            localPrefManagerDuitku.createURLTRX("");
         }
         else if(url.contains("linkaja.id") ){
             webView.stopLoading();
@@ -48,7 +49,7 @@ public class SANDBOX {
             {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 context.startActivity(browserIntent);
-                ((DuitkuTransaction)(context)).finish();
+                //((DuitkuTransaction)(context)).finish();
             }
             catch (Exception e)
             {

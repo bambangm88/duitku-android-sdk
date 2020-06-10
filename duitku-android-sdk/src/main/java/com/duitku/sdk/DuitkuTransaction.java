@@ -384,6 +384,7 @@ public class DuitkuTransaction extends AppCompatActivity {
     private void modeInformation(String status,String reference, String amount, String Code) {
 
         finish();
+        prefManager.createURLTRX("");
         DuitkuClient duitkuClient = new DuitkuClient();
         duitkuClient.code = Code ;
         duitkuClient.amount= amount;
