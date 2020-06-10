@@ -14,12 +14,12 @@ import java.util.Set;
 public class LocalPrefManagerDuitku {
 
     // Shared Preferences
-    SharedPreferences pref;
+    private SharedPreferences pref;
     // Editor for Shared preferences
-    SharedPreferences.Editor setPref;
+    private SharedPreferences.Editor setPref;
 
     // Context
-    Context _context;
+    private Context _context;
 
     // Shared pref mode
     int PRIVATE_MODE = 0;
@@ -37,31 +37,33 @@ public class LocalPrefManagerDuitku {
     private static final String TAG_URL = "urlX_";
 
 
-    private static  String TAG_PAYMENT_AMOUNT = "0"   ;
-    private static  String  TAG_PAYMENT_METHOD = "paymentMethodX_" ;
-    private static String  TAG_PRODUCT_DETAILS = "productDetailX_" ;
-    private static String  TAG_ADDITIONAL_PARAM = "additionalParamX_";
-    private static  String  TAG_MERCHANT_USER_INFO = "merchantUserInfoX_";
-    private static String  TAG_PHONE_NUMBER = "phoneNumberX_" ;
-    private static  String  TAG_CUSTOMER_VA_NAME = "customerVaNameX_";
-    private static  String  TAG_CALLBACK_URL = "callbackUrlX_";
-    private static  String  TAG_RETURN_URL= "returnUrlX_";
-    private static  String  TAG_EXPIRE_PERIOD = "expirePeriodX_";
-    private static String  TAG_TITLE_PAYMENT = "titlePaymentX_";
-    private static String  TAG_MODE_PAYMENT = "modePaymentX_";
-    private static String  TAG_EMAIL = "emailX_";
-    private static String  TAG_FIRSTNAME = "firstNameX_";
-    private static String  TAG_LASTNAME = "lastNameX_";
-    private static String  TAG_ADDRESS = "addressX_";
-    private static String  TAG_CITY = "cityX_";
-    private static String  TAG_POSTAL_CODE = "postalCodeX_";
-    private static String  TAG_PHONE = "phoneX_";
-    private static String  TAG_COUNTRY_CODE = "countryCodeX_";
+    private static final String TAG_PAYMENT_AMOUNT = "0"   ;
+    private static final  String  TAG_PAYMENT_METHOD = "paymentMethodX_" ;
+    private static final String  TAG_PRODUCT_DETAILS = "productDetailX_" ;
+    private static final String  TAG_ADDITIONAL_PARAM = "additionalParamX_";
+    private static  final String  TAG_MERCHANT_USER_INFO = "merchantUserInfoX_";
+    private static final String  TAG_PHONE_NUMBER = "phoneNumberX_" ;
+    private static  final String  TAG_CUSTOMER_VA_NAME = "customerVaNameX_";
+    private static  final String  TAG_CALLBACK_URL = "callbackUrlX_";
+    private static final String  TAG_RETURN_URL= "returnUrlX_";
+    private static final String  TAG_EXPIRE_PERIOD = "expirePeriodX_";
+    private static final String  TAG_TITLE_PAYMENT = "titlePaymentX_";
+    private static final String  TAG_MODE_PAYMENT = "modePaymentX_";
+    private static final String  TAG_EMAIL = "emailX_";
+    private static final String  TAG_FIRSTNAME = "firstNameX_";
+    private static final String  TAG_LASTNAME = "lastNameX_";
+    private static final String  TAG_ADDRESS = "addressX_";
+    private static  final String  TAG_CITY = "cityX_";
+    private static final String  TAG_POSTAL_CODE = "postalCodeX_";
+    private static final String  TAG_PHONE = "phoneX_";
+    private static final String  TAG_COUNTRY_CODE = "countryCodeX_";
 
-    private static String TAG_BASE_URL_API_DUITKU = "baseUrlApiX_";
-    private static String TAG_URL_REQUEST_TRANSACTION = "requestTrxX_";
-    private static String TAG_URL_CHECK_TRANSACTION = "checkTrxX_";
-    private static String TAG_URL_LIST_PAYMENT = "listPaymentX_";
+    private static final String TAG_BASE_URL_API_DUITKU = "baseUrlApiX_";
+    private static final String TAG_URL_REQUEST_TRANSACTION = "requestTrxX_";
+    private static final String TAG_URL_CHECK_TRANSACTION = "checkTrxX_";
+    private static final String TAG_URL_LIST_PAYMENT = "listPaymentX_";
+
+    private static final String TAG_LIST_TRX = "listPaymentTRX_";
 
 
 
@@ -135,6 +137,13 @@ public class LocalPrefManagerDuitku {
 
     }
 
+    public void createListTRX( String text){
+
+        setPref.putString(TAG_LIST_TRX,text);
+        setPref.commit();
+
+    }
+
     public String getTagTotalAmount() {
 
         return pref.getString(TAG_TOTAL, "");
@@ -165,6 +174,11 @@ public class LocalPrefManagerDuitku {
     public String getTagUrlTRX() {
 
         return pref.getString(TAG_URL, "");
+    }
+
+    public String getTagListTrx() {
+
+        return pref.getString(TAG_LIST_TRX, "");
     }
 
 

@@ -216,7 +216,8 @@ public class DuitkuTransaction extends AppCompatActivity {
         webView.getSettings().setUseWideViewPort(true);
         // webView.getSettings().setLoadsImagesAutomatically(true);
         // webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-// For API level below 18 (This method was deprecated in API level 18)
+
+        // For API level below 18 (This method was deprecated in API level 18)
         webView.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
 
         webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);

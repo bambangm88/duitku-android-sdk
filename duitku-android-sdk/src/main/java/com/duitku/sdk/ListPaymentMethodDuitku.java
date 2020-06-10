@@ -99,6 +99,7 @@ public class ListPaymentMethodDuitku extends AppCompatActivity  {
         }else {
 
             txt_amount.setText("Rp "+conversiRupiah(""+DuitkuKit.getPaymentAmount() ));
+            prefManager.createListTRX("TRX");
             createLocalDataTrx(DuitkuKit);
             initialisasi(DuitkuKit.getPaymentAmount());
         }
@@ -169,7 +170,12 @@ public class ListPaymentMethodDuitku extends AppCompatActivity  {
 
         }
 
-        prefManager.setTrxResume(DuitkuKit);
+        //run trx
+        if (prefManager.getTagListTrx() != ""){
+
+            prefManager.setTrxResume(DuitkuKit);
+
+        }
 
         super.onResume();
 
@@ -178,6 +184,7 @@ public class ListPaymentMethodDuitku extends AppCompatActivity  {
 
     @Override
     public void onBackPressed() {
+        prefManager.createListTRX("");
         super.onBackPressed();
     }
 
