@@ -97,7 +97,9 @@ public class ListPaymentMethodDuitku extends AppCompatActivity  {
         if (DuitkuKit.getPaymentAmount() == 0 || DuitkuKit.getExpiryPeriod().equals("") || DuitkuKit.getEmail().equals("") || DuitkuKit.getPhoneNumber().equals("") || DuitkuKit.getProductDetails().equals("") || DuitkuKit.getReturnUrl().equals("") || DuitkuKit.getCallbackUrl().equals("")||  DuitkuKit.getReturnUrl() == null|| DuitkuKit.getExpiryPeriod() == null || DuitkuKit.getEmail() == null || DuitkuKit.getPhoneNumber() == null|| DuitkuKit.getProductDetails() == null || DuitkuKit.getAdditionalParam() == null || DuitkuKit.getMerchantUserInfo() == null|| DuitkuKit.getCustomerVaName() == null || DuitkuKit.getCallbackUrl() == null){
             displayError(this.getString(R.string.errorNull));
         }else {
+
             txt_amount.setText("Rp "+conversiRupiah(""+DuitkuKit.getPaymentAmount() ));
+            createLocalDataTrx(DuitkuKit);
             initialisasi(DuitkuKit.getPaymentAmount());
         }
 
@@ -167,6 +169,7 @@ public class ListPaymentMethodDuitku extends AppCompatActivity  {
 
         }
 
+        prefManager.setTrxResume(DuitkuKit);
 
         super.onResume();
 
@@ -246,6 +249,41 @@ public class ListPaymentMethodDuitku extends AppCompatActivity  {
         pBar_total.setVisibility(View.GONE);
         stat_error.setText(error);
     }
+
+
+
+    private void createLocalDataTrx(DuitkuKit duitkuKit ){
+
+        prefManager.createLocalDataTrx(duitkuKit.getPaymentAmount(),
+                                        duitkuKit.getPaymentMethod(),
+                                        duitkuKit.getProductDetails(),
+                                        duitkuKit.getAdditionalParam(),
+                                        duitkuKit.getMerchantUserInfo(),
+                                        duitkuKit.getPhoneNumber(),
+                                        duitkuKit.getCustomerVaName(),
+                                        duitkuKit.getCallbackUrl(),
+                                        duitkuKit.getReturnUrl(),
+                                        duitkuKit.getExpiryPeriod(),
+                                        duitkuKit.getTitlePayment(),
+                                        duitkuKit.getModePayment(),
+                                        duitkuKit.getEmail(),
+                                        duitkuKit.getFirstName(),
+                                        duitkuKit.getLastName(),
+                                        duitkuKit.getAddress(),
+                                        duitkuKit.getCity(),
+                                        duitkuKit.getPostalCode(),
+                                        duitkuKit.getPhone(),
+                                        duitkuKit.getCountryCode(),
+                                        BaseKitDuitku.getBaseUrlApiDuitku(),
+                                        BaseKitDuitku.getUrlRequestTransaction(),
+                                        BaseKitDuitku.getUrlCheckTransaction(),
+                                        BaseKitDuitku.getUrlListPayment()
+
+        );
+    }
+
+
+
 
 
 
