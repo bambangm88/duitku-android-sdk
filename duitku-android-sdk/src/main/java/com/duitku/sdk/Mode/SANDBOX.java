@@ -25,8 +25,16 @@ public class SANDBOX {
         }
         DuitkuCallbackTransaction callbackKit = new DuitkuCallbackTransaction();
 
+
+        if(url.contains(duitkuKit.getReturnUrl()) || url.equals("") || url == ""   ) {
+            //wait(500);
+            ((DuitkuTransaction)(context)).closeProgreesLoading();
+            webView.stopLoading();
+            ((DuitkuTransaction)(context)).finish();
+            localPrefManagerDuitku.createURLTRX("");
+        }
         //except url webview //open in browser
-        if(url.equals("https://www.duitku.com/en/") || url.equals("www.duitku.com")|| url.equals("https://www.duitku.com")){
+        else  if(url.equals("https://www.duitku.com/en/") || url.equals("www.duitku.com")|| url.equals("https://www.duitku.com")){
             webView.stopLoading();
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             context.startActivity(browserIntent);
