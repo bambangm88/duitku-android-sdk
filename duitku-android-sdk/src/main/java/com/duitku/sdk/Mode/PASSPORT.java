@@ -99,6 +99,15 @@ public class PASSPORT {
 
                     if(url.contains(context.getString(R.string.passport)) ) {
 
+                        //if contain return url
+                        if(url.contains(duitkuKit.getReturnUrl()) || url.equals("") || url == ""   ) {
+                            //wait(500);
+                            ((DuitkuTransaction)(context)).closeProgreesLoading();
+
+                            webView.stopLoading();
+                            ((DuitkuTransaction)(context)).finish();
+                            localPrefManagerDuitku.createURLTRX("");
+                        }
 
                     }else if(url.contains("TopUpOVO")) {
 

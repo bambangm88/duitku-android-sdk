@@ -104,6 +104,16 @@ public class SANDBOX {
 
                 if(url.contains(context.getString(R.string.sandbox)) ) {
 
+                    //if contain return url
+                    if(url.contains(duitkuKit.getReturnUrl()) || url.equals("") || url == ""   ) {
+                        //wait(500);
+                        ((DuitkuTransaction)(context)).closeProgreesLoading();
+
+                        webView.stopLoading();
+                        ((DuitkuTransaction)(context)).finish();
+                        localPrefManagerDuitku.createURLTRX("");
+                    }
+
                 }else if(url.contains("TopUpOVO")) {
 
                 }else if(url.contains(duitkuKit.getReturnUrl()) || url.equals("") || url == ""   ) {
