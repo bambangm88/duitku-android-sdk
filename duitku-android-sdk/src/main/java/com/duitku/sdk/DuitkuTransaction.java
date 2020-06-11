@@ -103,9 +103,9 @@ public class DuitkuTransaction extends AppCompatActivity {
         if(DuitkuKit.getExpiryPeriod().equals("") || DuitkuKit.getExpiryPeriod() == null){
 
             displayError(DuitkuTransaction.this.getString(R.string.expiredPage));
-            
-        }else{
 
+        }else{
+            createLocalDataTrx(DuitkuKit);
             checkout(DuitkuKit.getPaymentAmount(),
                     DuitkuKit.getPaymentMethod(),
                     DuitkuKit.getProductDetails(),
@@ -117,6 +117,7 @@ public class DuitkuTransaction extends AppCompatActivity {
                     DuitkuKit.getCallbackUrl(),
                     DuitkuKit.getReturnUrl(),
                     DuitkuKit.getExpiryPeriod(),customerDetails);
+            prefManager.createListTRX("TRX");
 
         }
 
@@ -151,6 +152,7 @@ public class DuitkuTransaction extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
+        prefManager.createListTRX("");
         prefManager.createURLTRX("");
         finish();
 
@@ -446,6 +448,45 @@ public class DuitkuTransaction extends AppCompatActivity {
 
 
 
+    private void createLocalDataTrx(DuitkuKit duitkuKit ){
+
+        prefManager.createLocalDataTrx(duitkuKit.getPaymentAmount(),
+                duitkuKit.getPaymentMethod(),
+                duitkuKit.getProductDetails(),
+                duitkuKit.getAdditionalParam(),
+                duitkuKit.getMerchantUserInfo(),
+                duitkuKit.getPhoneNumber(),
+                duitkuKit.getCustomerVaName(),
+                duitkuKit.getCallbackUrl(),
+                duitkuKit.getReturnUrl(),
+                duitkuKit.getExpiryPeriod(),
+                duitkuKit.getTitlePayment(),
+                duitkuKit.getModePayment(),
+                duitkuKit.getEmail(),
+                duitkuKit.getFirstName(),
+                duitkuKit.getLastName(),
+                duitkuKit.getAddress(),
+                duitkuKit.getCity(),
+                duitkuKit.getPostalCode(),
+                duitkuKit.getPhone(),
+                duitkuKit.getCountryCode(),
+                BaseKitDuitku.getBaseUrlApiDuitku(),
+                BaseKitDuitku.getUrlRequestTransaction(),
+                BaseKitDuitku.getUrlCheckTransaction(),
+                BaseKitDuitku.getUrlListPayment()
+
+        );
+    }
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //run trx
+        if (prefManager.getTagListTrx() != ""){
+
+            prefManager.setTrxResume(DuitkuKit);
+
+        }
+    }
 }

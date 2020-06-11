@@ -362,6 +362,7 @@ public class LocalPrefManagerDuitku {
         duitku.setCountryCode(getTagCountryCode());
         //duitku.setItemDetails(arrayList);
         duitku.setPaymentAmount(Integer.parseInt(getTagPaymentAmount()));
+        duitku.setPaymentMethod(getTagPaymentMethod());
 
     }
 
