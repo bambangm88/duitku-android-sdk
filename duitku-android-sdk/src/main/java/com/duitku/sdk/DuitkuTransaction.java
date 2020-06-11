@@ -102,13 +102,8 @@ public class DuitkuTransaction extends AppCompatActivity {
 
         if(DuitkuKit.getExpiryPeriod().equals("") || DuitkuKit.getExpiryPeriod() == null){
 
-            //run trx
-            if (prefManager.getTagUrlTRX() != ""){
-
-                web_checkout(prefManager.getTagUrlTRX());
-
-            }
-
+            displayError(DuitkuTransaction.this.getString(R.string.expiredPage));
+            
         }else{
 
             checkout(DuitkuKit.getPaymentAmount(),
@@ -449,18 +444,7 @@ public class DuitkuTransaction extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onResume() {
 
-        //run trx
-        //if (prefManager.getTagUrlTRX() != ""){
-
-        //    web_checkout(prefManager.getTagUrlTRX());
-
-        //}
-
-        super.onResume();
-    }
 
 
 
