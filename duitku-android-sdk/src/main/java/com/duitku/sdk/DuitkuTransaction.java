@@ -102,8 +102,12 @@ public class DuitkuTransaction extends AppCompatActivity {
 
         if(DuitkuKit.getExpiryPeriod().equals("") || DuitkuKit.getExpiryPeriod() == null){
 
-            //displayError(DuitkuTransaction.this.getString(R.string.expiredPage));
-            web_checkout(prefManager.getTagUrlTRX());
+            //run trx
+            if (prefManager.getTagUrlTRX() != ""){
+
+                web_checkout(prefManager.getTagUrlTRX());
+
+            }
 
         }else{
 
