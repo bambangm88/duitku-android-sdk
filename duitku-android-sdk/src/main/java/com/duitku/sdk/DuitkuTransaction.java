@@ -245,11 +245,8 @@ public class DuitkuTransaction extends AppCompatActivity {
                 else if (progress == 100) {
                     //HIDE
                     closeProgreesLoading();
-                }if (progress > 50) {
-                    //open
-                    displayProgreesLoading();
                 }else {
-                    closeProgreesLoading();
+                    
                 }
 
             }
