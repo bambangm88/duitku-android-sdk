@@ -239,7 +239,7 @@ public class DuitkuTransaction extends AppCompatActivity {
         webView.setWebChromeClient(new WebChromeClient() {
             public void onProgressChanged(WebView view, int progress) {
 
-                if (progress == 100 && isCheckTransactionDOne) {
+               /* if (progress == 100 && isCheckTransactionDOne) {
                     displayProgreesLoading();
                 }
                 else if (progress == 100) {
@@ -247,7 +247,7 @@ public class DuitkuTransaction extends AppCompatActivity {
                     closeProgreesLoading();
                 }else {
 
-                }
+                }*/
 
             }
 
