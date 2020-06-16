@@ -14,6 +14,8 @@ import com.duitku.sdk.DuitkuTransaction;
 import com.duitku.sdk.DuitkuUtility.DuitkuKit;
 import com.duitku.sdk.DuitkuClient;
 
+import java.util.Set;
+
 public class SANDBOX {
 
 
@@ -27,11 +29,49 @@ public class SANDBOX {
 
 
         if(url.contains(duitkuKit.getReturnUrl()) || url.equals("") || url == ""   ) {
+
             //wait(500);
             ((DuitkuTransaction)(context)).closeProgreesLoading();
             webView.stopLoading();
-            ((DuitkuTransaction)(context)).finish();
-            localPrefManagerDuitku.createURLTRX("");
+
+
+            if (!url.equals("")){
+
+               if (callbackKit.isRedirectOnBack()) {
+
+                       DuitkuClient duitkuClient = new DuitkuClient();
+
+                       ((DuitkuTransaction)(context)).isCheckTransactionDOne = true ;
+                       duitkuClient.code = "01";
+                       duitkuClient.amount= ""+duitkuKit.getPaymentAmount();
+                       duitkuClient.reference = reference;
+                       duitkuClient.status = "PENDING" ;
+
+                       ((DuitkuTransaction)(context)).finish();
+                       localPrefManagerDuitku.createURLTRX("");
+
+               }else{
+
+                       ((DuitkuTransaction)(context)).finish();
+                       localPrefManagerDuitku.createURLTRX("");
+
+               }
+
+
+
+            }else{
+
+                ((DuitkuTransaction)(context)).finish();
+                localPrefManagerDuitku.createURLTRX("");
+
+            }
+
+
+
+
+
+
+
         }
         //except url webview //open in browser
         else  if(url.equals("https://www.duitku.com/en/") || url.equals("www.duitku.com")|| url.equals("https://www.duitku.com")){
