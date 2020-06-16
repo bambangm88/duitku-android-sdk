@@ -37,6 +37,9 @@ public class PASSPORT {
 
                 if (callbackKit.isRedirectOnBack()) {
 
+                    ((DuitkuTransaction)(context)).finish();
+                    localPrefManagerDuitku.createURLTRX("");
+
                     DuitkuClient duitkuClient = new DuitkuClient();
 
                     ((DuitkuTransaction)(context)).isCheckTransactionDOne = true ;
@@ -45,8 +48,6 @@ public class PASSPORT {
                     duitkuClient.reference = reference;
                     duitkuClient.status = "PENDING" ;
 
-                    ((DuitkuTransaction)(context)).finish();
-                    localPrefManagerDuitku.createURLTRX("");
 
                 }else{
 

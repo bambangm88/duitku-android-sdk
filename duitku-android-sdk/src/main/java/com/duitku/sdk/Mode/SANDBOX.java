@@ -39,16 +39,17 @@ public class SANDBOX {
 
                if (callbackKit.isRedirectOnBack()) {
 
-                       DuitkuClient duitkuClient = new DuitkuClient();
+                      ((DuitkuTransaction)(context)).finish();
+                      localPrefManagerDuitku.createURLTRX("");
 
+                       DuitkuClient duitkuClient = new DuitkuClient();
                        ((DuitkuTransaction)(context)).isCheckTransactionDOne = true ;
                        duitkuClient.code = "01";
                        duitkuClient.amount= ""+duitkuKit.getPaymentAmount();
                        duitkuClient.reference = reference;
                        duitkuClient.status = "PENDING" ;
 
-                       ((DuitkuTransaction)(context)).finish();
-                       localPrefManagerDuitku.createURLTRX("");
+
 
                }else{
 
@@ -65,11 +66,6 @@ public class SANDBOX {
                 localPrefManagerDuitku.createURLTRX("");
 
             }
-
-
-
-
-
 
 
         }
