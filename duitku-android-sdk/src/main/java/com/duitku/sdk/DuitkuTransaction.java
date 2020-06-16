@@ -94,8 +94,6 @@ public class DuitkuTransaction extends AppCompatActivity {
 
 
 
-
-
         Address address = new Address(DuitkuKit.getFirstName(),DuitkuKit.getLastName(),DuitkuKit.getAddress(),DuitkuKit.getCity(),DuitkuKit.getPostalCode(),DuitkuKit.getPhoneNumber(),DuitkuKit.getCountryCode());
         CustomerDetails customerDetails = new CustomerDetails(DuitkuKit.getFirstName(),DuitkuKit.getLastName(),DuitkuKit.getEmail(),DuitkuKit.getPhoneNumber(),address,address) ;
 
@@ -246,7 +244,7 @@ public class DuitkuTransaction extends AppCompatActivity {
                     //HIDE
                     closeProgreesLoading();
                 }else {
-                    
+
                 }
 
             }
@@ -356,7 +354,7 @@ public class DuitkuTransaction extends AppCompatActivity {
 
                 closeProgreesLoading();
                 //cv_cc_info_transaction.setVisibility(View.VISIBLE);
-                displayError(DuitkuTransaction.this.getString(R.string.internalServerError)+t.getMessage());
+                displayError(DuitkuTransaction.this.getString(R.string.errorConnection)+t.getMessage());
                 Toast.makeText(DuitkuTransaction.this,DuitkuTransaction.this.getString(R.string.errorConnection)+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
