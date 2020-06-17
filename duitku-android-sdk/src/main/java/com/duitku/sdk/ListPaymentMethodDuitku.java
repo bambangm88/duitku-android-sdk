@@ -164,22 +164,24 @@ public class ListPaymentMethodDuitku extends AppCompatActivity  {
         d_finish d_finish =new d_finish(this);
         d_finish.duitkuFinish(ListPaymentMethodDuitku.this);
 
-        //finishcallbackfrommerchant
-        if(!callbackKit.isCallbackFromMerchant()){
+        //finishcallbackfrommerchant                //finishcallbackfrommerchant
+        if(!callbackKit.isCallbackFromMerchant() || !callbackKit.isRedirectOnBack()){ //false
 
             d_finish.FinishTopUpNotify(ListPaymentMethodDuitku.this);
             d_finish.clearSdkTask();
 
+        }else {
+
+            if(callbackKit.isCallbackFromMerchant()){
+
+            }else{
+                d_finish.FinishTopUpNotify(ListPaymentMethodDuitku.this);
+            }
+
+
         }
 
 
-        //finishcallbackfrommerchant
-        if(callbackKit.isRedirectOnBack()){
-
-            d_finish.FinishTopUpNotify(ListPaymentMethodDuitku.this);
-            d_finish.clearSdkTask();
-
-        }
 
         prefManager.createURLTRX("");
 
