@@ -4,7 +4,7 @@ public class DuitkuCallbackTransaction {
 
     public static boolean CallbackFromMerchant = false ;
 
-    public static boolean RedirectOnBack = true ;
+    public static boolean RedirectOnBack = false ;
 
 
 
@@ -20,7 +20,7 @@ public class DuitkuCallbackTransaction {
         return RedirectOnBack;
     }
 
-    public static void setRedirectOnBack(boolean redirectOnBack) {
+    public void setRedirectOnBack(boolean redirectOnBack) {
         RedirectOnBack = redirectOnBack;
     }
 

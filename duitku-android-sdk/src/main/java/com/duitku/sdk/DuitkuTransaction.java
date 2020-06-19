@@ -100,7 +100,13 @@ public class DuitkuTransaction extends AppCompatActivity {
 
         if(DuitkuKit.getExpiryPeriod().equals("") || DuitkuKit.getExpiryPeriod() == null){
 
-            displayError(DuitkuTransaction.this.getString(R.string.expiredPage));
+            if (prefManager.getTagUrlTRX() == null || prefManager.getTagUrlTRX().equals("") ) {
+                displayError(DuitkuTransaction.this.getString(R.string.expiredPage));
+            }else{
+                webView.loadUrl(prefManager.getTagUrlTRX());
+
+            }
+
 
         }else{
             createLocalDataTrx(DuitkuKit);
@@ -145,6 +151,7 @@ public class DuitkuTransaction extends AppCompatActivity {
         iv_error = findViewById(R.id.iv_duitku_error);
         Glide.with(this).load(R.mipmap.logoabuloading).into(iv_spinner);
         Glide.with(this).load(R.mipmap.i_error).into(iv_error);
+
     }
 
     @Override
@@ -152,9 +159,45 @@ public class DuitkuTransaction extends AppCompatActivity {
 
         prefManager.createListTRX("");
         prefManager.createURLTRX("");
+
+       /* if (callbackKit.isRedirectOnBack()) {
+            DuitkuClient duitkuClient = new DuitkuClient();
+
+            try {
+
+                if (isCheckTransactionDOne){
+
+                    isCheckTransactionDOne = true;
+                    duitkuClient.code = "404"; //code forfinish
+                    duitkuClient.amount= "";
+                    duitkuClient.reference = "";
+                    duitkuClient.status = "" ;
+
+                }else{
+
+                    isCheckTransactionDOne = true;
+                    duitkuClient.code = "01";
+                    duitkuClient.amount = null;
+                    duitkuClient.reference = reference;
+                    duitkuClient.status = "Pending";
+
+                }
+
+
+
+            }catch (Exception ex){
+                Log.e("Log", "error: "+ex.getMessage() );
+            }
+
+
+
+
+        }
+
+       */
+
+
         finish();
-
-
         super.onBackPressed();
     }
 
@@ -204,9 +247,6 @@ public class DuitkuTransaction extends AppCompatActivity {
         });
     }
 
-
-
-
     private void web_checkout(String url){
 
         webView = (WebView) findViewById(R.id.webview);
@@ -240,6 +280,7 @@ public class DuitkuTransaction extends AppCompatActivity {
                 if (progress == 100 && isCheckTransactionDOne) {
                     displayProgreesLoading();
                 }
+
                 else if (progress == 100) {
                     //HIDE
                     closeProgreesLoading();
@@ -277,7 +318,7 @@ public class DuitkuTransaction extends AppCompatActivity {
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
 
-           overloading(url);
+            overloading(url);
 
             super.onPageStarted(view, url, favicon);
         }
@@ -476,10 +517,15 @@ public class DuitkuTransaction extends AppCompatActivity {
         );
     }
 
-
     @Override
     protected void onResume() {
         super.onResume();
+
+        if (DuitkuKit.getPaymentMethod().equals("") || DuitkuKit.getPaymentMethod() == null){
+
+            webView.loadUrl(prefManager.getTagUrlTRX());
+        }
+
         //run trx
         if (prefManager.getTagListTrx() != ""){
 
@@ -487,4 +533,12 @@ public class DuitkuTransaction extends AppCompatActivity {
 
         }
     }
+
+
+
+
+
+
+
+
 }

@@ -35,24 +35,66 @@ public class PASSPORT {
 
             if (!url.equals("")){
 
+                DuitkuClient duitkuClient = new DuitkuClient();
+
                 if (callbackKit.isRedirectOnBack()) {
+
+                    if (url.contains("resultCode=01")){
+
+                        ((DuitkuTransaction)(context)).isCheckTransactionDOne = true ;
+                        duitkuClient.code = "01";
+                        duitkuClient.amount= ""+duitkuKit.getPaymentAmount();
+                        duitkuClient.reference = reference;
+                        duitkuClient.status = "Pending" ;
+
+
+                    }else if (url.contains("resultCode=02")){
+
+                        ((DuitkuTransaction)(context)).isCheckTransactionDOne = true ;
+                        duitkuClient.code = "01";
+                        duitkuClient.amount= ""+duitkuKit.getPaymentAmount();
+                        duitkuClient.reference = reference;
+                        duitkuClient.status = "Pending" ;
+
+                    }else{
+
+                        ((DuitkuTransaction)(context)).isCheckTransactionDOne = true ;
+                        duitkuClient.code = "404"; //code forfinish
+                        duitkuClient.amount= "";
+                        duitkuClient.reference = "";
+                        duitkuClient.status = "" ;
+
+                    }
 
                     ((DuitkuTransaction)(context)).finish();
                     localPrefManagerDuitku.createURLTRX("");
 
-                    DuitkuClient duitkuClient = new DuitkuClient();
-
-                    ((DuitkuTransaction)(context)).isCheckTransactionDOne = true ;
-                    duitkuClient.code = "01";
-                    duitkuClient.amount= ""+duitkuKit.getPaymentAmount();
-                    duitkuClient.reference = reference;
-                    duitkuClient.status = "PENDING" ;
 
 
                 }else{
 
-                    ((DuitkuTransaction)(context)).finish();
-                    localPrefManagerDuitku.createURLTRX("");
+                    if (url.contains("resultCode=00")){
+
+                        ((DuitkuTransaction)(context)).isCheckTransactionDOne = true ;
+                        duitkuClient.code = "404"; //code forfinish
+                        duitkuClient.amount= "";
+                        duitkuClient.reference = "";
+                        duitkuClient.status = "" ;
+
+                        ((DuitkuTransaction)(context)).finish();
+                        localPrefManagerDuitku.createURLTRX("");
+
+
+                    }else{
+
+                        ((DuitkuTransaction)(context)).finish();
+                        localPrefManagerDuitku.createURLTRX("");
+
+                    }
+
+
+
+
 
                 }
 
@@ -135,63 +177,65 @@ public class PASSPORT {
 
 
         }else{
-                    //CC
-                    if(url.contains("TopUp") && url.contains("Notification") )  {
-                        //if information from merchant
-                        if(callbackKit.isCallbackFromMerchant()){
-                            ((DuitkuTransaction)(context)).displayProgreesLoading();
-                            //solve double reload check transaction
-                            if(((DuitkuTransaction)(context)).num == 0){
-                                ((DuitkuTransaction)(context)).isCheckTransactionDOne = true ;
-                                ((DuitkuTransaction)(context)).checkTransaction(reference);
-                                ((DuitkuTransaction)(context)).num = ((DuitkuTransaction)(context)).num+1;
-                            }
-
-                        }
-
-                        if(callbackKit.isCallbackFromMerchant() && ((DuitkuTransaction)(context)).num > 0) {
-                            ((DuitkuTransaction)(context)).displayProgreesLoading();
-                        }
-                        else{
-                            DuitkuClient.topUpNotif = "TopUp";
-
-                            ((DuitkuTransaction)(context)).closeProgreesLoading();
-                            ((DuitkuTransaction)(context)).closeToolbar();
-
-                        }
-
+            //CC
+            if(url.contains("TopUp") && url.contains("Notification") )  {
+                //if information from merchant
+                if(callbackKit.isCallbackFromMerchant()){
+                    ((DuitkuTransaction)(context)).displayProgreesLoading();
+                    //solve double reload check transaction
+                    if(((DuitkuTransaction)(context)).num == 0){
+                        ((DuitkuTransaction)(context)).isCheckTransactionDOne = true ;
+                        ((DuitkuTransaction)(context)).checkTransaction(reference);
+                        ((DuitkuTransaction)(context)).num = ((DuitkuTransaction)(context)).num+1;
                     }
 
-                    if(url.contains(context.getString(R.string.passport)) ) {
+                }
 
-                        //if contain return url
-                        if(url.contains(duitkuKit.getReturnUrl()) || url.equals("") || url == ""   ) {
-                            //wait(500);
-                            ((DuitkuTransaction)(context)).closeProgreesLoading();
+                if(callbackKit.isCallbackFromMerchant() && ((DuitkuTransaction)(context)).num > 0) {
+                    ((DuitkuTransaction)(context)).displayProgreesLoading();
+                }
+                else{
+                    DuitkuClient.topUpNotif = "TopUp";
 
-                            webView.stopLoading();
-                            ((DuitkuTransaction)(context)).finish();
-                            localPrefManagerDuitku.createURLTRX("");
-                        }
+                    ((DuitkuTransaction)(context)).closeProgreesLoading();
+                    ((DuitkuTransaction)(context)).closeToolbar();
 
-                    }else if(url.contains("TopUpOVO")) {
+                }
 
-                    }else if(url.contains(duitkuKit.getReturnUrl()) || url.equals("") || url == ""   ) {
-                        //wait(500);
-                        ((DuitkuTransaction)(context)).closeProgreesLoading();
+            }
 
-                        webView.stopLoading();
-                        ((DuitkuTransaction)(context)).finish();
-                        localPrefManagerDuitku.createURLTRX("");
-                    }
-                    else {
-                        if (url.contains(duitkuKit.getReturnUrl())){
-                            ((DuitkuTransaction)(context)).closeProgreesLoading();
-                        }else {
-                            ((DuitkuTransaction) (context)).displayProgreesLoading();
-                        }
-                    }
+            if(url.contains(context.getString(R.string.passport)) ) {
+
+                //if contain return url
+                if(url.contains(duitkuKit.getReturnUrl()) || url.equals("") || url == ""   ) {
+                    //wait(500);
+                    ((DuitkuTransaction)(context)).closeProgreesLoading();
+
+                    webView.stopLoading();
+                    ((DuitkuTransaction)(context)).finish();
+                    localPrefManagerDuitku.createURLTRX("");
+                }
+
+            }else if(url.contains("TopUpOVO")) {
+
+            }else if(url.contains(duitkuKit.getReturnUrl()) || url.equals("") || url == ""   ) {
+                //wait(500);
+                ((DuitkuTransaction)(context)).closeProgreesLoading();
+
+                webView.stopLoading();
+                ((DuitkuTransaction)(context)).finish();
+                localPrefManagerDuitku.createURLTRX("");
+            }
+            else {
+                if (url.contains(duitkuKit.getReturnUrl())){
+                    ((DuitkuTransaction)(context)).closeProgreesLoading();
+                }else {
+                    ((DuitkuTransaction) (context)).displayProgreesLoading();
+                }
+            }
 
         }
     }
+
+
 }

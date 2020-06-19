@@ -42,7 +42,7 @@ import retrofit2.Response;
 
 public class ListPaymentMethodDuitku extends AppCompatActivity  {
 
-    private com.duitku.sdk.DuitkuUtility.DuitkuKit DuitkuKit;
+    private com.duitku.sdk.DuitkuUtility.DuitkuKit duitkuKit;
     private TextView txt_amount;
     private Toolbar toolbar ;
     private DuitkuCallbackTransaction callbackKit ;
@@ -68,7 +68,8 @@ public class ListPaymentMethodDuitku extends AppCompatActivity  {
 
         //portrait
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        DuitkuKit = new DuitkuKit();
+
+        duitkuKit = new DuitkuKit();
         duitkuClient = new DuitkuClient();
 
         Toolbar toolbar = findViewById(R.id.toolbar_pay);
@@ -96,14 +97,17 @@ public class ListPaymentMethodDuitku extends AppCompatActivity  {
 
         //payment amount null
 
-        if (DuitkuKit.getPaymentAmount() == 0 || DuitkuKit.getExpiryPeriod().equals("") || DuitkuKit.getEmail().equals("") || DuitkuKit.getPhoneNumber().equals("") || DuitkuKit.getProductDetails().equals("") || DuitkuKit.getReturnUrl().equals("") || DuitkuKit.getCallbackUrl().equals("")||  DuitkuKit.getReturnUrl() == null|| DuitkuKit.getExpiryPeriod() == null || DuitkuKit.getEmail() == null || DuitkuKit.getPhoneNumber() == null|| DuitkuKit.getProductDetails() == null || DuitkuKit.getAdditionalParam() == null || DuitkuKit.getMerchantUserInfo() == null|| DuitkuKit.getCustomerVaName() == null || DuitkuKit.getCallbackUrl() == null){
+        if (duitkuKit.getPaymentAmount() == 0 || duitkuKit.getExpiryPeriod().equals("") || duitkuKit.getEmail().equals("") || duitkuKit.getPhoneNumber().equals("") || duitkuKit.getProductDetails().equals("") || duitkuKit.getReturnUrl().equals("") || duitkuKit.getCallbackUrl().equals("")||  duitkuKit.getReturnUrl() == null|| duitkuKit.getExpiryPeriod() == null || duitkuKit.getEmail() == null || duitkuKit.getPhoneNumber() == null|| duitkuKit.getProductDetails() == null || duitkuKit.getAdditionalParam() == null || duitkuKit.getMerchantUserInfo() == null|| duitkuKit.getCustomerVaName() == null || duitkuKit.getCallbackUrl() == null){
             displayError(this.getString(R.string.errorNull));
+
+            finish();
+
         }else {
 
-            txt_amount.setText("Rp "+conversiRupiah(""+DuitkuKit.getPaymentAmount() ));
+            txt_amount.setText("Rp "+conversiRupiah(""+duitkuKit.getPaymentAmount() ));
             prefManager.createListTRX("TRX");
-            createLocalDataTrx(DuitkuKit);
-            initialisasi(DuitkuKit.getPaymentAmount());
+            createLocalDataTrx(duitkuKit);
+            initialisasi(duitkuKit.getPaymentAmount());
         }
 
     }
@@ -126,13 +130,10 @@ public class ListPaymentMethodDuitku extends AppCompatActivity  {
         rvPayment.setLayoutManager(mLayoutManager);
         rvPayment.setItemAnimator(new DefaultItemAnimator());
 
-
         getListCheckout(amount) ;
 
         d_finish d_finish =new d_finish(this);
         d_finish.duitkuFinish(ListPaymentMethodDuitku.this);
-
-
 
         if(!callbackKit.isCallbackFromMerchant()){
 
@@ -161,34 +162,14 @@ public class ListPaymentMethodDuitku extends AppCompatActivity  {
     @Override
     public void onResume(){
 
+
         d_finish d_finish =new d_finish(this);
         d_finish.duitkuFinish(ListPaymentMethodDuitku.this);
 
-        //finishcallbackfrommerchant                //finishcallbackfrommerchant
-        if(!callbackKit.isCallbackFromMerchant() || !callbackKit.isRedirectOnBack()){ //false
-
-            d_finish.FinishTopUpNotify(ListPaymentMethodDuitku.this);
-            d_finish.clearSdkTask();
-
-        }else {
-
-            if(callbackKit.isCallbackFromMerchant()){
-
-            }else{
-                d_finish.FinishTopUpNotify(ListPaymentMethodDuitku.this);
-            }
-
-
-        }
-
-
-
         prefManager.createURLTRX("");
-
         //run trx
         if (prefManager.getTagListTrx() != ""){
-
-            prefManager.setTrxResume(DuitkuKit);
+            prefManager.setTrxResume(duitkuKit);
 
         }
 
@@ -277,32 +258,33 @@ public class ListPaymentMethodDuitku extends AppCompatActivity  {
     private void createLocalDataTrx(DuitkuKit duitkuKit ){
 
         prefManager.createLocalDataTrx(duitkuKit.getPaymentAmount(),
-                                        duitkuKit.getPaymentMethod(),
-                                        duitkuKit.getProductDetails(),
-                                        duitkuKit.getAdditionalParam(),
-                                        duitkuKit.getMerchantUserInfo(),
-                                        duitkuKit.getPhoneNumber(),
-                                        duitkuKit.getCustomerVaName(),
-                                        duitkuKit.getCallbackUrl(),
-                                        duitkuKit.getReturnUrl(),
-                                        duitkuKit.getExpiryPeriod(),
-                                        duitkuKit.getTitlePayment(),
-                                        duitkuKit.getModePayment(),
-                                        duitkuKit.getEmail(),
-                                        duitkuKit.getFirstName(),
-                                        duitkuKit.getLastName(),
-                                        duitkuKit.getAddress(),
-                                        duitkuKit.getCity(),
-                                        duitkuKit.getPostalCode(),
-                                        duitkuKit.getPhone(),
-                                        duitkuKit.getCountryCode(),
-                                        BaseKitDuitku.getBaseUrlApiDuitku(),
-                                        BaseKitDuitku.getUrlRequestTransaction(),
-                                        BaseKitDuitku.getUrlCheckTransaction(),
-                                        BaseKitDuitku.getUrlListPayment()
+                duitkuKit.getPaymentMethod(),
+                duitkuKit.getProductDetails(),
+                duitkuKit.getAdditionalParam(),
+                duitkuKit.getMerchantUserInfo(),
+                duitkuKit.getPhoneNumber(),
+                duitkuKit.getCustomerVaName(),
+                duitkuKit.getCallbackUrl(),
+                duitkuKit.getReturnUrl(),
+                duitkuKit.getExpiryPeriod(),
+                duitkuKit.getTitlePayment(),
+                duitkuKit.getModePayment(),
+                duitkuKit.getEmail(),
+                duitkuKit.getFirstName(),
+                duitkuKit.getLastName(),
+                duitkuKit.getAddress(),
+                duitkuKit.getCity(),
+                duitkuKit.getPostalCode(),
+                duitkuKit.getPhone(),
+                duitkuKit.getCountryCode(),
+                BaseKitDuitku.getBaseUrlApiDuitku(),
+                BaseKitDuitku.getUrlRequestTransaction(),
+                BaseKitDuitku.getUrlCheckTransaction(),
+                BaseKitDuitku.getUrlListPayment()
 
         );
     }
+
 
 
 

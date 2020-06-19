@@ -37,26 +37,65 @@ public class SANDBOX {
 
             if (!url.equals("")){
 
-               if (callbackKit.isRedirectOnBack()) {
+                DuitkuClient duitkuClient = new DuitkuClient();
 
-                      ((DuitkuTransaction)(context)).finish();
-                      localPrefManagerDuitku.createURLTRX("");
+                if (callbackKit.isRedirectOnBack()) {
 
-                       DuitkuClient duitkuClient = new DuitkuClient();
-                       ((DuitkuTransaction)(context)).isCheckTransactionDOne = true ;
-                       duitkuClient.code = "01";
-                       duitkuClient.amount= ""+duitkuKit.getPaymentAmount();
-                       duitkuClient.reference = reference;
-                       duitkuClient.status = "PENDING" ;
+                    if (url.contains("resultCode=01")){
+
+                        ((DuitkuTransaction)(context)).isCheckTransactionDOne = true ;
+                        duitkuClient.code = "01";
+                        duitkuClient.amount= ""+duitkuKit.getPaymentAmount();
+                        duitkuClient.reference = reference;
+                        duitkuClient.status = "Pending" ;
+
+
+                    }else if (url.contains("resultCode=02")){
+
+                        ((DuitkuTransaction)(context)).isCheckTransactionDOne = true ;
+                        duitkuClient.code = "01";
+                        duitkuClient.amount= ""+duitkuKit.getPaymentAmount();
+                        duitkuClient.reference = reference;
+                        duitkuClient.status = "Pending" ;
+
+                    }else{
+
+                        ((DuitkuTransaction)(context)).isCheckTransactionDOne = true ;
+                        duitkuClient.code = "404"; //code forfinish
+                        duitkuClient.amount= "";
+                        duitkuClient.reference = "";
+                        duitkuClient.status = "" ;
+
+                    }
+
+                    ((DuitkuTransaction)(context)).finish();
+                    localPrefManagerDuitku.createURLTRX("");
 
 
 
-               }else{
+                }else{
 
-                       ((DuitkuTransaction)(context)).finish();
-                       localPrefManagerDuitku.createURLTRX("");
+                    if (url.contains("resultCode=00")){
 
-               }
+                        ((DuitkuTransaction)(context)).isCheckTransactionDOne = true ;
+                        duitkuClient.code = "404"; //code forfinish
+                        duitkuClient.amount= "";
+                        duitkuClient.reference = "";
+                        duitkuClient.status = "" ;
+
+                        ((DuitkuTransaction)(context)).finish();
+                        localPrefManagerDuitku.createURLTRX("");
+
+
+                    }else{
+
+                        ((DuitkuTransaction)(context)).finish();
+                        localPrefManagerDuitku.createURLTRX("");
+
+                    }
+
+
+                }
 
 
 
@@ -100,7 +139,6 @@ public class SANDBOX {
         else if(url.contains("linkaja.id") ){
             webView.stopLoading();
 
-
             try
             {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
@@ -139,68 +177,71 @@ public class SANDBOX {
 
             }
 
-         }
+        }
 
         else{
 
             //CC
-                if(url.contains("TopUp") && url.contains("Notification") )  {
-                    //if information from merchant
-                    if(callbackKit.isCallbackFromMerchant()){
-                        ((DuitkuTransaction)(context)).displayProgreesLoading();
-                        //solve double reload check transaction
-                        if(((DuitkuTransaction)(context)).num == 0){
-                            ((DuitkuTransaction)(context)).isCheckTransactionDOne = true ;
-                            ((DuitkuTransaction)(context)).checkTransaction(reference);
-                            ((DuitkuTransaction)(context)).num = ((DuitkuTransaction)(context)).num+1;
-                        }
-
-                    }
-
-                    if(callbackKit.isCallbackFromMerchant() && ((DuitkuTransaction)(context)).num > 0) {
-                        ((DuitkuTransaction)(context)).displayProgreesLoading();
-                    }
-                    else{
-                        DuitkuClient.topUpNotif = "TopUp";
-
-                        ((DuitkuTransaction)(context)).closeProgreesLoading();
-                        ((DuitkuTransaction)(context)).closeToolbar();
-
+            if(url.contains("TopUp") && url.contains("Notification") )  {
+                //if information from merchant
+                if(callbackKit.isCallbackFromMerchant()){
+                    ((DuitkuTransaction)(context)).displayProgreesLoading();
+                    //solve double reload check transaction
+                    if(((DuitkuTransaction)(context)).num == 0){
+                        ((DuitkuTransaction)(context)).isCheckTransactionDOne = true ;
+                        ((DuitkuTransaction)(context)).checkTransaction(reference);
+                        ((DuitkuTransaction)(context)).num = ((DuitkuTransaction)(context)).num+1;
                     }
 
                 }
 
-                if(url.contains(context.getString(R.string.sandbox)) ) {
+                if(callbackKit.isCallbackFromMerchant() && ((DuitkuTransaction)(context)).num > 0) {
+                    ((DuitkuTransaction)(context)).displayProgreesLoading();
+                }
+                else{
+                    DuitkuClient.topUpNotif = "TopUp";
 
-                    //if contain return url
-                    if(url.contains(duitkuKit.getReturnUrl()) || url.equals("") || url == ""   ) {
-                        //wait(500);
-                        ((DuitkuTransaction)(context)).closeProgreesLoading();
+                    ((DuitkuTransaction)(context)).closeProgreesLoading();
+                    ((DuitkuTransaction)(context)).closeToolbar();
 
-                        webView.stopLoading();
-                        ((DuitkuTransaction)(context)).finish();
-                        localPrefManagerDuitku.createURLTRX("");
-                    }
+                }
 
-                }else if(url.contains("TopUpOVO")) {
+            }
 
-                }else if(url.contains(duitkuKit.getReturnUrl()) || url.equals("") || url == ""   ) {
+            if(url.contains(context.getString(R.string.sandbox)) ) {
+
+                //if contain return url
+                if(url.contains(duitkuKit.getReturnUrl()) || url.equals("") || url == ""   ) {
                     //wait(500);
                     ((DuitkuTransaction)(context)).closeProgreesLoading();
+
                     webView.stopLoading();
                     ((DuitkuTransaction)(context)).finish();
                     localPrefManagerDuitku.createURLTRX("");
+                }
 
+            }else if(url.contains("TopUpOVO")) {
+
+            }else if(url.contains(duitkuKit.getReturnUrl()) || url.equals("") || url == ""   ) {
+                //wait(500);
+                ((DuitkuTransaction)(context)).closeProgreesLoading();
+                webView.stopLoading();
+                ((DuitkuTransaction)(context)).finish();
+                localPrefManagerDuitku.createURLTRX("");
+
+            }
+            else {
+                if (url.contains(duitkuKit.getReturnUrl())){
+                    ((DuitkuTransaction)(context)).closeProgreesLoading();
+                }else {
+                    ((DuitkuTransaction) (context)).displayProgreesLoading();
                 }
-                else {
-                    if (url.contains(duitkuKit.getReturnUrl())){
-                        ((DuitkuTransaction)(context)).closeProgreesLoading();
-                    }else {
-                        ((DuitkuTransaction) (context)).displayProgreesLoading();
-                    }
-                }
+            }
 
 
         }
     }
+
+
+
 }

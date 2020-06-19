@@ -73,8 +73,11 @@ public class DuitkuClient extends AppCompatActivity {
             onDone();
         } else if (code.equals(context.getString(R.string.three))) {
             onDone();
-        } else {
-
+        } else if (code.equals(context.getString(R.string.done))) { //code untuk done
+            onDone();
+            clearSdkTask();
+        }else {
+            clearSdkTask();
         }
 
     }
