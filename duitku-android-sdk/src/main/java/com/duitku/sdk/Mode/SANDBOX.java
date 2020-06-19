@@ -45,7 +45,7 @@ public class SANDBOX {
 
                         ((DuitkuTransaction)(context)).isCheckTransactionDOne = true ;
                         duitkuClient.code = "01";
-                        duitkuClient.amount= ""+duitkuKit.getPaymentAmount();
+                        duitkuClient.amount= "";
                         duitkuClient.reference = reference;
                         duitkuClient.status = "Pending" ;
 
@@ -54,7 +54,7 @@ public class SANDBOX {
 
                         ((DuitkuTransaction)(context)).isCheckTransactionDOne = true ;
                         duitkuClient.code = "01";
-                        duitkuClient.amount= ""+duitkuKit.getPaymentAmount();
+                        duitkuClient.amount= "";
                         duitkuClient.reference = reference;
                         duitkuClient.status = "Pending" ;
 
