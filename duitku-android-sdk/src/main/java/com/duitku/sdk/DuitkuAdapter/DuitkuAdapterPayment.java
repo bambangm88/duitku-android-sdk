@@ -72,7 +72,7 @@ public class DuitkuAdapterPayment extends RecyclerView.Adapter<DuitkuAdapterPaym
                 DuitkuKit.setTitlePayment(payment);
                 DuitkuKit.setPaymentMethod(code);
                 mContext.startActivity(new Intent(mContext, DuitkuTransaction.class));
-                ((DuitkuTransaction)(mContext)).finish();
+                
             }
         });
 
