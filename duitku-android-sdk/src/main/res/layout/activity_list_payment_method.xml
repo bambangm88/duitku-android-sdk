@@ -24,6 +24,7 @@
         <TextView
             android:textColor="@color/text"
             android:layout_marginTop="15dp"
+            android:gravity="center"
             android:textAlignment="center"
             android:text="Memuat"
             android:layout_below="@id/iv_duitku_spinner"
