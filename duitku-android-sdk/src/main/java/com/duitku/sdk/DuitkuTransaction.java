@@ -120,7 +120,7 @@ public class DuitkuTransaction extends AppCompatActivity {
                     DuitkuKit.getCustomerVaName(),
                     DuitkuKit.getCallbackUrl(),
                     DuitkuKit.getReturnUrl(),
-                    DuitkuKit.getExpiryPeriod(),customerDetails);
+                    DuitkuKit.getExpiryPeriod(),customerDetails,DuitkuKit.getMerchantOrderId());
             prefManager.createListTRX("TRX");
 
         }
@@ -202,9 +202,9 @@ public class DuitkuTransaction extends AppCompatActivity {
     }
 
 
-    private void checkout(final int paymentAmount, final String paymentMethod, final String productDetails, final String email, final String phoneNumber, final String additionalParam, final String merchantUserInfo, final String customerVaName, final String callbackUrl, final String returnUrl, final String expiryPeriod, CustomerDetails customerDetails) {
+    private void checkout(final int paymentAmount, final String paymentMethod, final String productDetails, final String email, final String phoneNumber, final String additionalParam, final String merchantUserInfo, final String customerVaName, final String callbackUrl, final String returnUrl, final String expiryPeriod, CustomerDetails customerDetails, final String merchantOrderId) {
         displayProgreesLoading();
-        Call<ResponseTransaction> call=API.checkout(BaseKitDuitku.getUrlRequestTransaction(),new ResponseTransaction(DuitkuKit.getItemDetails(),paymentAmount,paymentMethod,productDetails,email,phoneNumber,additionalParam,merchantUserInfo,customerVaName,callbackUrl,returnUrl,expiryPeriod,customerDetails));
+        Call<ResponseTransaction> call=API.checkout(BaseKitDuitku.getUrlRequestTransaction(),new ResponseTransaction(DuitkuKit.getItemDetails(),paymentAmount,paymentMethod,productDetails,email,phoneNumber,additionalParam,merchantUserInfo,customerVaName,callbackUrl,returnUrl,expiryPeriod,customerDetails,merchantOrderId));
         call.enqueue(new Callback<ResponseTransaction>() {
             @Override
             public void onResponse(Call<ResponseTransaction> call, Response<ResponseTransaction> response) {
@@ -512,7 +512,8 @@ public class DuitkuTransaction extends AppCompatActivity {
                 BaseKitDuitku.getBaseUrlApiDuitku(),
                 BaseKitDuitku.getUrlRequestTransaction(),
                 BaseKitDuitku.getUrlCheckTransaction(),
-                BaseKitDuitku.getUrlListPayment()
+                BaseKitDuitku.getUrlListPayment(),
+                duitkuKit.getMerchantOrderId()
 
         );
     }

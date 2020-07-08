@@ -13,6 +13,7 @@ public class DuitkuKit {
     private static String  productDetails = "" ;
     private static String  additionalParam = "";
     private static  String  merchantUserInfo = "";
+    private static  String  merchantOrderId= "";
     private static String  phoneNumber = "" ;
     private static  String  customerVaName = "";
     private static  String  callbackUrl = "";
@@ -30,6 +31,14 @@ public class DuitkuKit {
     private static String  postalCode = "";
     private static String  phone = "";
     private static String  countryCode = "";
+
+    public String getMerchantOrderId() {
+        return merchantOrderId;
+    }
+
+    public void setMerchantOrderId(String merchantOrderId) {
+        DuitkuKit.merchantOrderId = merchantOrderId;
+    }
 
 
     public String getFirstName() {

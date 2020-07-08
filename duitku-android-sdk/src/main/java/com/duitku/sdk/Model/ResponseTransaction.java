@@ -21,6 +21,11 @@ public class ResponseTransaction {
     @SerializedName("paymentMethod")
     String paymentMethod;
 
+
+
+    @SerializedName("merchantOrderId")
+    String merchantOrderId;
+
     @SerializedName("paymentAmount")
     int paymentAmount;
 
@@ -51,6 +56,14 @@ public class ResponseTransaction {
     @SerializedName("expiryPeriod")
     String expiryPeriod;
 
+    public String getMerchantOrderId() {
+        return merchantOrderId;
+    }
+
+    public void setMerchantOrderId(String merchantOrderId) {
+        this.merchantOrderId = merchantOrderId;
+    }
+
     private ArrayList<ItemDetails> itemDetails ;
 
     private CustomerDetails customerDetail ;
@@ -79,9 +92,10 @@ public class ResponseTransaction {
         this.statusMessage = statusMessage;
     }
 
-    public ResponseTransaction(ArrayList<ItemDetails> itemDetails, int paymentAmount, String paymentMethod , String productDetails , String email , String phoneNumber , String additionalParam , String merchantUserInfo , String customerVaName , String callbackUrl , String returnUrl , String expiryPeriod , CustomerDetails customerDetails) {
+    public ResponseTransaction(ArrayList<ItemDetails> itemDetails, int paymentAmount, String paymentMethod , String productDetails , String email , String phoneNumber , String additionalParam , String merchantUserInfo , String customerVaName , String callbackUrl , String returnUrl , String expiryPeriod , CustomerDetails customerDetails  , String merchantOrderId) {
         this.itemDetails = itemDetails;
         this.paymentAmount = paymentAmount;
+        this.merchantOrderId = merchantOrderId;
         this.paymentMethod = paymentMethod;
         this.productDetails = productDetails;
         this.email = email;

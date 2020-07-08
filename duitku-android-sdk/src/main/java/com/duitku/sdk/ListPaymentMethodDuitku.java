@@ -280,7 +280,8 @@ public class ListPaymentMethodDuitku extends AppCompatActivity  {
                 BaseKitDuitku.getBaseUrlApiDuitku(),
                 BaseKitDuitku.getUrlRequestTransaction(),
                 BaseKitDuitku.getUrlCheckTransaction(),
-                BaseKitDuitku.getUrlListPayment()
+                BaseKitDuitku.getUrlListPayment(),
+                duitkuKit.getMerchantOrderId()
 
         );
     }

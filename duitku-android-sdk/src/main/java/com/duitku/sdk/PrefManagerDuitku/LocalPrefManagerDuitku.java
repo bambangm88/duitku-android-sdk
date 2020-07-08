@@ -36,7 +36,7 @@ public class LocalPrefManagerDuitku {
     private static final String TAG_TOTAL = "total_";
     private static final String TAG_URL = "urlX_";
 
-
+    private static final String TAG_MERCHANT_ORDER_ID= "merchantOrderId"   ;
     private static final String TAG_PAYMENT_AMOUNT = "0"   ;
     private static final  String  TAG_PAYMENT_METHOD = "paymentMethodX_" ;
     private static final String  TAG_PRODUCT_DETAILS = "productDetailX_" ;
@@ -78,7 +78,7 @@ public class LocalPrefManagerDuitku {
     public void createLocalDataTrx(int amount , String paymentMethod , String productdetail , String additionalParam , String merchantUserInfo , String phoneNumber,
                                    String customerVaName , String callbackUrl , String returnUrl , String expirePeriod , String titlePayment , String modePayment
                                     , String email , String firstName , String lastName , String address , String city
-                                    , String postal_code , String phone , String countryCode , String baseUrl, String requestTrx , String checkTrx , String listPayment ){
+                                    , String postal_code , String phone , String countryCode , String baseUrl, String requestTrx , String checkTrx , String listPayment , String merchantOrderId ){
 
         setPref.putString(TAG_PAYMENT_AMOUNT, ""+amount);
         setPref.putString(TAG_PAYMENT_METHOD, paymentMethod);
@@ -100,7 +100,7 @@ public class LocalPrefManagerDuitku {
         setPref.putString(TAG_POSTAL_CODE, postal_code);
         setPref.putString(TAG_PHONE, phone);
         setPref.putString(TAG_COUNTRY_CODE, countryCode);
-
+        setPref.putString(TAG_MERCHANT_ORDER_ID, merchantOrderId);
         setPref.putString(TAG_BASE_URL_API_DUITKU, baseUrl);
         setPref.putString(TAG_URL_REQUEST_TRANSACTION, requestTrx);
         setPref.putString(TAG_URL_CHECK_TRANSACTION, checkTrx);
