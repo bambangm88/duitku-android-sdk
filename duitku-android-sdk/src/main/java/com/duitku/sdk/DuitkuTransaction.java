@@ -334,8 +334,6 @@ public class DuitkuTransaction extends AppCompatActivity {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             //  pCustomDialog.setVisibility(View.VISIBLE);
-            view.loadUrl(url);
-
 
             if (url.startsWith("shopeeid")) {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -343,23 +341,21 @@ public class DuitkuTransaction extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             }
+
             else if (url.startsWith("market")) {
                 return true;
+            }
+            else if (url.startsWith("uat.shopee.co.id")) {
+                return true;
             }else if(url.contains("app.appsflyer.com")) {
-                
+
                 return false;
 
             }else{
                 overloading(url);
             }
 
-
-
-
-
-
-
-            return true;
+            return super.shouldOverrideUrlLoading(view, url);
         }
 
 
