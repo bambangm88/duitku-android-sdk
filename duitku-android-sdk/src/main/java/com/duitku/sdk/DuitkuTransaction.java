@@ -1,10 +1,12 @@
 package com.duitku.sdk;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
@@ -318,7 +320,13 @@ public class DuitkuTransaction extends AppCompatActivity {
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
 
-            overloading(url);
+            //overloading(url);
+
+            if (url.startsWith("shopeeid")) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(view.getUrl()));
+                startActivity(intent);
+            }
 
             super.onPageStarted(view, url, favicon);
         }
@@ -327,7 +335,27 @@ public class DuitkuTransaction extends AppCompatActivity {
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             //  pCustomDialog.setVisibility(View.VISIBLE);
             view.loadUrl(url);
+
+
+            if (url.startsWith("shopeeid")) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(view.getUrl()));
+                startActivity(intent);
+                return true;
+            }
+            else if (url.startsWith("market")) {
+                return true;
+            }
+            if (url.contains("app.appsflyer.com")) {
+                return false;
+            }
+
+
+
             overloading(url);
+
+
+
             return true;
         }
 
@@ -431,6 +459,7 @@ public class DuitkuTransaction extends AppCompatActivity {
         duitkuClient.amount= amount;
         duitkuClient.reference = reference;
         duitkuClient.status = status ;
+
 
     }
 

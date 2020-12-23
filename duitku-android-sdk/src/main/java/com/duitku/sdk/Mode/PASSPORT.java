@@ -120,23 +120,6 @@ public class PASSPORT {
             webView.stopLoading();
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             context.startActivity(browserIntent);
-        }else if(url.contains("shopee.co.id")|| url.contains("airpay.co.id") ){
-            webView.stopLoading();
-            try
-            {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                context.startActivity(browserIntent);
-                ((DuitkuTransaction)(context)).finish();
-                localPrefManagerDuitku.createURLTRX("");
-            }
-            catch (Exception e)
-            {
-                // TODO: handle exception
-                Toast.makeText(context,"Try Again",Toast.LENGTH_LONG).show();
-                ((DuitkuTransaction)(context)).finish();
-            }
-
-
         }
         else if(url.contains("linkaja.id") ){
             webView.stopLoading();
