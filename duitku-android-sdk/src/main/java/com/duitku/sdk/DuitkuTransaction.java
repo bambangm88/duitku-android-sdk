@@ -345,14 +345,17 @@ public class DuitkuTransaction extends AppCompatActivity {
             }
             else if (url.startsWith("market")) {
                 return true;
-            }
-            if (url.contains("app.appsflyer.com")) {
+            }else if(url.contains("app.appsflyer.com")) {
+                
                 return false;
+
+            }else{
+                overloading(url);
             }
 
 
 
-            overloading(url);
+
 
 
 
