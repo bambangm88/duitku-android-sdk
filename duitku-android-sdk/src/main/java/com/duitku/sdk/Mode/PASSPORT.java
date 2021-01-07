@@ -56,6 +56,14 @@ public class PASSPORT {
                         duitkuClient.reference = reference;
                         duitkuClient.status = "Pending" ;
 
+                    }else if (url.contains("resultCode=00")){
+
+                        ((DuitkuTransaction)(context)).isCheckTransactionDOne = true ;
+                        duitkuClient.code = "00";
+                        duitkuClient.amount= "";
+                        duitkuClient.reference = reference;
+                        duitkuClient.status = "Success" ;
+
                     }else{
 
                         ((DuitkuTransaction)(context)).isCheckTransactionDOne = true ;
@@ -76,10 +84,10 @@ public class PASSPORT {
                     if (url.contains("resultCode=00")){
 
                         ((DuitkuTransaction)(context)).isCheckTransactionDOne = true ;
-                        duitkuClient.code = "404"; //code forfinish
+                        duitkuClient.code = "00"; //code forfinish
                         duitkuClient.amount= "";
                         duitkuClient.reference = "";
-                        duitkuClient.status = "" ;
+                        duitkuClient.status = "Success" ;
 
                         ((DuitkuTransaction)(context)).finish();
                         localPrefManagerDuitku.createURLTRX("");
