@@ -324,7 +324,7 @@ public class DuitkuTransaction extends AppCompatActivity {
 
             if (url.startsWith("shopeeid")) {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(view.getUrl()));
+                intent.setData(Uri.parse(url));
                 startActivity(intent);
             }
 
@@ -337,7 +337,7 @@ public class DuitkuTransaction extends AppCompatActivity {
 
             if (url.startsWith("shopeeid")) {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(view.getUrl()));
+                intent.setData(Uri.parse(url));
                 startActivity(intent);
                 return true;
             }
