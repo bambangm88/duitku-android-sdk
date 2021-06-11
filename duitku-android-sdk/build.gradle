@@ -3,7 +3,7 @@
 apply plugin: 'com.android.library'
 
 apply plugin: 'maven-publish'
-apply plugin: 'com.jfrog.bintray'
+
 
 
 group 'com.duitku'
@@ -189,13 +189,3 @@ ext {
     PUBLISH_VERSION = android.defaultConfig.versionName
 }
 
-signing {
-    sign publishing.publications
-}
-
-nexusStaging {
-    packageGroup = 'com.duitku'
-    stagingProfileId = 'bcea62bcea28e7' // dummy example, replace with your own!
-    username = ossrhUsername
-    password = ossrhPassword
-}
