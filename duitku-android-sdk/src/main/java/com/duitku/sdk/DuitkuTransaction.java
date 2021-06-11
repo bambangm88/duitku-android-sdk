@@ -322,11 +322,24 @@ public class DuitkuTransaction extends AppCompatActivity {
 
             //overloading(url);
 
-            if (url.startsWith("shopeeid")) {
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(url));
-                startActivity(intent);
+            if (!url.startsWith("https") ) {
+                if (!url.startsWith("http") ) {
+                    try {
+                        //if app linkaja / shopee app installed
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(url));
+                        startActivity(intent);
+                    }catch (Exception ex){
+                        //if app linkaja / shopee app not installed
+                        Toast.makeText(DuitkuTransaction.this,"Please, Download App",Toast.LENGTH_LONG).show();
+                     }
+                }else{
+                    overloading(url);
+                }
+            }else{
+                overloading(url);
             }
+
 
             super.onPageStarted(view, url, favicon);
         }
@@ -335,22 +348,22 @@ public class DuitkuTransaction extends AppCompatActivity {
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             //  pCustomDialog.setVisibility(View.VISIBLE);
 
-            if (url.startsWith("shopeeid")) {
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(url));
-                startActivity(intent);
-                return true;
-            }
-
-            else if (url.startsWith("market")) {
-                return true;
-            }
-            else if (url.startsWith("uat.shopee.co.id")) {
-                return true;
-            }else if(url.contains("app.appsflyer.com")) {
-
-                return false;
-
+            if (!url.startsWith("https") ) {
+                if (!url.startsWith("http") ) {
+                    try {
+                        //if app linkaja / shopee app installed
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(url));
+                        startActivity(intent);
+                        return true;
+                    }catch (Exception ex){
+                        //if app linkaja / shopee app not installed
+                        Toast.makeText(DuitkuTransaction.this,"Please, Download App",Toast.LENGTH_LONG).show();
+                        return true;
+                    }
+                }else{
+                    overloading(url);
+                }
             }else{
                 overloading(url);
             }
